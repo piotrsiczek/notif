@@ -1,6 +1,6 @@
-package com.spiczek.fotif.notif.notification;
+package com.spiczek.notif.server.notification;
 
-import com.spiczek.fotif.notif.notification.model.AccelData;
+import com.spiczek.notif.server.notification.model.AccelData;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -24,12 +24,9 @@ public class NotifService {
     public void init() {
         log.info("************************ init ***********************");
         WebClient client = WebClient.builder().build();
-        client.get().uri("http://192.168.0.100:9999/accel")
+        client.get().uri("http://localhost:9999/accel")
                 .accept(MediaType.TEXT_EVENT_STREAM)
                 .retrieve()
-                .bodyToFlux(AccelData.class).subscribe(e -> {
-//                    log.info("saving: " + e.pring());
-                    reactiveMongoTemplate.save(e).block();
-        });
+                .bodyToFlux(AccelData.class).subscribe(e -> reactiveMongoTemplate.save(e).block());
     }
 }

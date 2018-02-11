@@ -1,4 +1,4 @@
-package com.spiczek.fotif.notif;
+package com.spiczek.notif.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

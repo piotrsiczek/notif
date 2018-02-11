@@ -1,4 +1,4 @@
-package com.spiczek.notif.notifpi.publisher.model;
+package com.spiczek.notif.pi.publisher.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +16,5 @@ public class AccelData {
     private int x;
     private int y;
     private int z;
-
-    public String pring() {
-        return "Acceleration in X-Axis : " + x + " Acceleration in Y-Axis : " + y + " Acceleration in Z-Axis : " + z;
-    }
+    private String time;
 }

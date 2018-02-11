@@ -1,4 +1,4 @@
-package com.spiczek.notif.notifpi;
+package com.spiczek.notif.pi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

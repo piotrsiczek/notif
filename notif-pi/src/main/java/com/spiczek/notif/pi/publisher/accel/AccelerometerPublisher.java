@@ -1,7 +1,7 @@
-package com.spiczek.notif.notifpi.publisher.accel;
+package com.spiczek.notif.pi.publisher.accel;
 
-import com.spiczek.notif.notifpi.publisher.accel.device.Accelerometer;
-import com.spiczek.notif.notifpi.publisher.model.AccelData;
+import com.spiczek.notif.pi.publisher.accel.device.Accelerometer;
+import com.spiczek.notif.pi.publisher.model.AccelData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +10,8 @@ import reactor.core.publisher.Flux;
 import reactor.util.function.Tuple2;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -27,8 +29,8 @@ public class AccelerometerPublisher {
     }
 
     @GetMapping(value = "/accel", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<AccelData> asdf() {
-        Flux<Long> interval = Flux.interval(Duration.ofMillis(20));
+    public Flux<AccelData> accel() {
+        Flux<Long> interval = Flux.interval(Duration.ofMillis(500));
         Flux<AccelData> accelInfiniteFlux = Flux.fromStream(Stream.generate(this::getAccelData));
         return Flux.zip(interval, accelInfiniteFlux).map(Tuple2::getT2);
     }
@@ -36,11 +38,11 @@ public class AccelerometerPublisher {
     private AccelData getAccelData() {
         AccelData reading = null;
         try {
-            reading = accl.getReading();
+            String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+            reading = accl.getReading(time);
         } catch (Exception ex) {
             log.error(Arrays.toString(ex.getStackTrace()));
         }
-        log.info(reading.pring());
         return reading;
     }
 }

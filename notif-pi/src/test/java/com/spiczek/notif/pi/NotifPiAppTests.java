@@ -1,4 +1,4 @@
-package com.spiczek.fotif.notif;
+package com.spiczek.notif.pi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class NotifServerAppTests {
+public class NotifPiAppTests {
 
 	@Test
 	public void contextLoads() {

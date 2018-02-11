@@ -1,9 +1,9 @@
-package com.spiczek.notif.notifpi.publisher.accel.device;
+package com.spiczek.notif.pi.publisher.accel.device;
 
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
-import com.spiczek.notif.notifpi.publisher.model.AccelData;
+import com.spiczek.notif.pi.publisher.model.AccelData;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +33,7 @@ public class Lis3dh implements Accelerometer {
     }
 
     @Override
-    public AccelData getReading() throws Exception {
+    public AccelData getReading(String time) throws Exception {
         // Read 6 bytes of data
         // xAccl lsb, xAccl msb, yAccl lsb, yAccl msb, zAccl lsb, zAccl msb
         byte[] data = new byte[6];
@@ -63,6 +63,6 @@ public class Lis3dh implements Accelerometer {
             zAccl -= 65536;
         }
 
-        return AccelData.builder().x(xAccl).y(yAccl).z(zAccl).build();
+        return AccelData.builder().x(xAccl).y(yAccl).z(zAccl).time(time).build();
     }
 }
