@@ -1,4 +1,4 @@
-package com.spiczek.notif.notifpanel;
+package com.spiczek.notif.panel;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

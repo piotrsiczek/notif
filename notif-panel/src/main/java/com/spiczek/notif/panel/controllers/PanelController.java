@@ -1,8 +1,9 @@
-package com.spiczek.notif.notifpanel;
+package com.spiczek.notif.panel.controllers;
 
 import com.mongodb.client.model.changestream.ChangeStreamDocument;
 import com.mongodb.client.model.changestream.FullDocument;
 import com.mongodb.reactivestreams.client.MongoCollection;
+import com.spiczek.notif.panel.model.AccelData;
 import lombok.AllArgsConstructor;
 import org.bson.Document;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
@@ -21,8 +22,13 @@ public class PanelController {
     private ReactiveMongoTemplate reactiveMongoTemplate;
 
     @GetMapping(value = "/notifications", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<ChangeStreamDocument<Document>> test() {
+    public Flux<AccelData> getAccelData() {
         MongoCollection<Document> collection = reactiveMongoTemplate.getCollection("accelData");
-        return Flux.from(collection.watch().fullDocument(FullDocument.UPDATE_LOOKUP));
+        return Flux.from(collection.watch().fullDocument(FullDocument.UPDATE_LOOKUP)).map(ChangeStreamDocument::getFullDocument)
+                .map(this::mapToAccelData);
+    }
+
+    private AccelData mapToAccelData(Document document) {
+        return new AccelData(document.getInteger("x"), document.getInteger("y"), document.getInteger("z"), document.getString("time"));
     }
 }
