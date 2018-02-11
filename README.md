@@ -9,7 +9,7 @@ To make things more interesting it uses Raspberry Pi 2 B and LIS3DH acceleromete
 
 App Name | Description | Profiles
 ------------ | ------------- | -------------
-notif-pi | Application generating data, can generate random values or if lunched on raspberry accelerometer data | pi - if runs on pi <br> local - if runs locally
+notif-pi | Application generating data, can generate random values or if launched on raspberry accelerometer data | pi - run on pi <br> local - run locally
 notif-server | Server fetching data from notif-pi app and saving it to mongoDb database |
 notif-panel | Angular frontend visualizing data |
 
