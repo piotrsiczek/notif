@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: 'Nunito';
+}
+
+.main {
+  width: 80%;
+  margin: 60px auto 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.font-size-x-large {
+  font-size: 2em;
+}
+
+.font-size-x-medium {
+  font-size: 0.9em;
+}
+
+.notif-table {
+  font-size: 0.8em;
+  width: 100%;
+}
+
+.notif-panel {
+  margin-top: 20px;
+  width: 50%;
+  float: left;
+}

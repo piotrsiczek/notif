@@ -1,5 +1,11 @@
-<table>
-  <tr *ngFor="let notif of notifList">
+<table class="notif-table">
+  <tr>
+    <td width="17%">X-Axis</td>
+    <td width="17%">Y-Axis</td>
+    <td width="17%">Z-Axis</td>
+    <td width="49%">Time</td>
+  </tr>
+  <tr *ngFor="let notif of notifList.reverse()">
     <td>{{notif.x}}</td>
     <td>{{notif.y}}</td>
     <td>{{notif.z}}</td>
